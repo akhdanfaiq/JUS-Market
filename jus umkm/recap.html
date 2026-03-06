@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Recap - Fresh Juice Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5A9CB5',
+                        secondary: '#FACE68',
+                        tertiary: '#FAAC68',
+                        accent: '#FA6868'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-primary shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-white">🍹 Fresh Juice Shop</h1>
+                <div class="space-x-4">
+                    <a href="index.html" class="text-white hover:text-secondary transition">Home</a>
+                    <a href="recap.html" class="text-white hover:text-secondary transition">Orders</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Recap Section -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Order Recap</h2>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Orders</p>
+                        <p id="total-orders" class="text-3xl font-bold text-primary">0</p>
+                    </div>
+                    <div class="text-5xl">📦</div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Revenue</p>
+                        <p id="total-revenue" class="text-3xl font-bold text-accent">Rp 0</p>
+                    </div>
+                    <div class="text-5xl">💰</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800">Transaction List</h3>
+                <button onclick="loadOrders()" 
+                        class="bg-primary hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition">
+                    Refresh
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Order ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Customer</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Phone</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Product</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Qty</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Total</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body" class="divide-y divide-gray-200">
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="text-center py-12">
+            <div class="loader mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading orders...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12">
+            <div class="text-6xl mb-4">📭</div>
+            <p class="text-gray-600 text-lg">No orders yet</p>
+        </div>
+    </section>
+
+    <script src="js/recap.js"></script>
+</body>
+</html>
